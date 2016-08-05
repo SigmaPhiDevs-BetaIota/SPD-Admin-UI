@@ -25,8 +25,7 @@ app.listen(3000, function(){
  *Respond to requests on the root with index.html
  */
 app.get('/',function(req, res){
-    var header = load_file("header.mustache");
-    res.send(load_template("index.mustache",null,{"header":header});
+    res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
 
@@ -99,5 +98,5 @@ function load_template(file, views, mixins){
 function load_file(file){
     fs.readFile(file, function(err, data){
         return data.toString();
-    }
+    });
 }
