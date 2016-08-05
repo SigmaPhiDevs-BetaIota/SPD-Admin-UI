@@ -1,3 +1,4 @@
+
 /*
  *Load in express module and the path module.
  *Also set the static file path.
@@ -6,6 +7,8 @@
 var express = require('express')
 var path = require('path')
 var app = express();
+var fs = require('fs');
+var mustache = require('mustache');
 app.set('view engine', 'mustache');
 app.use(express.static('public'));
 
@@ -18,14 +21,15 @@ app.listen(3000, function(){
 });
 
 /*************
- *ROUTES
- * **********./
+    ROUTES
+ ************/
  
 /*
  *Respond to requests on the root with index.html
  */
 app.get('/',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "index.html"));
+    const head = load_file(path.join(__dirname, "views", "header.mustache"));
+    res.send(load_template("index.mustache",null,{header:head})); 
 });
 
 
@@ -72,11 +76,12 @@ app.get('/philanthropy',function(req, res){
  *This will load a mustache template with the two given files
  */
 function load_template(file, views, mixins){
-
     if(file != null){
         //Load in the given file
         var main_file = ""
         main_template = load_file(path.join(__dirname,"views",file));
+        console.log(main_template);
+
         //Check if views or mixins is null, if so set them to empty hashes
         if(views == null){
             views = {};
@@ -96,7 +101,10 @@ function load_template(file, views, mixins){
  *The returned value will be a string.
  */
 function load_file(file){
+    var file_string = ""
     fs.readFile(file, function(err, data){
-        return data.toString();
+        file_string = data;
     });
+    console.log(file_string);
+    return file_string;
 }
