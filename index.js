@@ -1,3 +1,6 @@
+/*
+ *Author: Cole Alban
+ */
 
 /*
  *Load in express module and the path module.
@@ -28,16 +31,24 @@ app.listen(3000, function(){
  *Respond to requests on the root with index.html
  */
 app.get('/',function(req, res){
-    const head = load_file(path.join(__dirname, "views", "header.mustache"));
-    res.send(load_template("index.mustache",null,{header:head})); 
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("index.mustache",null,partials); 
+    res.send(html);
 });
-
 
 /*
  *Respond to requests to /rush with rush.html
  */
 app.get('/rush',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "rush.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("rush.mustache",null,partials); 
+    res.send(html);
 });
 
 
@@ -46,7 +57,12 @@ app.get('/rush',function(req, res){
  *Respond to requests to /about with rush.html
  */
 app.get('/about',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "about.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("about.mustache",null,partials); 
+    res.send(html);
 });
 
 
@@ -54,34 +70,47 @@ app.get('/about',function(req, res){
  *Respond to requests to /contact with contact.html
  */
 app.get('/contact',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "contact.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("contact.mustache",null,partials); 
+    res.send(html);
 });
 
 /*
  *Respond to requests on /schedule with schedule.html
  */
 app.get('/schedule',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "schedule.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("schedule.mustache",null, partials); 
+    res.send(html);
 });
 
 /*
  *Respond to requests on /philanthropy with philantrhopy.html
  */
 app.get('/philanthropy',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "philanthropy.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("philanthropy.mustache",null, partials); 
+    res.send(html);
 });
 
 
 /*
  *This will load a mustache template with the two given files
  */
-function load_template(file, views, mixins){
+function loadTemplate(file, views, mixins){
     if(file != null){
         //Load in the given file
-        var main_file = ""
-        main_template = load_file(path.join(__dirname,"views",file));
-        console.log(main_template);
-
+        var mainTemplate;
+        mainTemplate = loadFile(path.join(__dirname,"views",file));
         //Check if views or mixins is null, if so set them to empty hashes
         if(views == null){
             views = {};
@@ -91,7 +120,7 @@ function load_template(file, views, mixins){
             mixin = {};
         }
         //return the rendered string
-        return mustache.render(main_file, views,mixins);
+        return mustache.render(mainTemplate, views, mixins);
     }             
     return "<h1>Error reading file</h1>" //If no valid file is passed in, return this error html
 }
@@ -100,11 +129,18 @@ function load_template(file, views, mixins){
  *This function will be used to load a file into a string
  *The returned value will be a string.
  */
-function load_file(file){
-    var file_string = ""
-    fs.readFile(file, function(err, data){
-        file_string = data;
-    });
-    console.log(file_string);
-    return file_string;
+function loadFile(file){
+    return fs.readFileSync(file).toString();
+}
+
+/*
+ * This function will load up the header, footer, and navbar.
+ * return: an array containing header at [0] and footer at [1]
+ */
+function loadCommonElements(){
+    var elements = {}; 
+    elements["footer"] = loadFile(path.join(__dirname, "views", "partials", "footer.mustache"));
+    elements["header"] = loadFile(path.join(__dirname, "views", "partials", "header.mustache"));
+    elements["nav"] = loadFile(path.join(__dirname, "views", "partials", "nav.mustache"));
+    return elements;
 }
