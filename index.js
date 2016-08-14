@@ -9,7 +9,7 @@ var path = require('path')
 var app = express();
 var fs = require('fs');
 var mustache = require('mustache');
-app.set('view engine', 'mustache');
+app.set('view engine', 'html');
 app.use(express.static('public'));
 
 
@@ -28,8 +28,9 @@ app.listen(3000, function(){
  *Respond to requests on the root with index.html
  */
 app.get('/',function(req, res){
-    const head = load_file(path.join(__dirname, "views", "header.mustache"));
-    res.send(load_template("index.mustache",null,{header:head})); 
+    const head = loadFile(path.join(__dirname, "views", "header.mustache"));
+    console.log("Going to root");
+    res.send(loadTemplate("index.mustache",null,{header:head})); 
 });
 
 
@@ -75,23 +76,21 @@ app.get('/philanthropy',function(req, res){
 /*
  *This will load a mustache template with the two given files
  */
-function load_template(file, views, mixins){
+function loadTemplate(file, views, mixins){
     if(file != null){
-        //Load in the given file
-        var main_file = ""
-        main_template = load_file(path.join(__dirname,"views",file));
-        console.log(main_template);
-
+        var baseTemplate;
+        baseTemplate = loadFile(path.join(__dirname,"views",file));
         //Check if views or mixins is null, if so set them to empty hashes
         if(views == null){
             views = {};
         }
 
         if(mixins == null){
-            mixin = {};
+            mixins = {};
         }
         //return the rendered string
-        return mustache.render(main_file, views,mixins);
+        var renderedTemplate = mustache.render(baseTemplate, views, mixins);
+        return renderedTemplate;
     }             
     return "<h1>Error reading file</h1>" //If no valid file is passed in, return this error html
 }
@@ -100,11 +99,6 @@ function load_template(file, views, mixins){
  *This function will be used to load a file into a string
  *The returned value will be a string.
  */
-function load_file(file){
-    var file_string = ""
-    fs.readFile(file, function(err, data){
-        file_string = data;
-    });
-    console.log(file_string);
-    return file_string;
+function loadFile(file){
+    return fs.readFileSync(file, 'utf-8');
 }
