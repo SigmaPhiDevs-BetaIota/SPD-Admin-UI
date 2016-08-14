@@ -1,38 +1,11 @@
 <html lang="en">
 
 
-{{ > header }}
+{{>header}}
 
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div id="nav-container" class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">&Sigma;&Phi;&Delta;</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-				<ul class="nav navbar-nav">
-                    <li><a href="/rush">Rush</a></li>
-					<li><a href="/about">About</a></li>
-					<li><a href="/schedule">Events</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>
+    {{ > nav }}
 
 	<div id="main-container" class="container">
 		<div class="banner">
@@ -177,42 +150,7 @@
 			</div>
 		</div>
 	</div>
-
-	<div id="footer" class="footer" >
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-5 left">
-				<h2>Sigma Phi Delta</h2>
-				<p> We are the only socially oriented engineering fraternity at the University of Maryland. </p> 
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-3 middle">
-				<h4>Quick Links:</h2>
-				<ul >
-					<li><a href="about.html#exec">Exec Board</a></li>
-					<li><a href="rush.html#academics">Academic Info</a></li>
-					<li><a href="rush.html#career">Jobs we've had</a></li>
-					<li><a href="https://orgsync.com/64333/news_posts" target="_blank">UMD OrgSync Page</a></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-4 right" >
-				<div style="margin-bottom:10px">
-					<a href="http://www.umd.edu" target="_blank"><img src="img/umd_logo.png" style="height:40px;"></a>
-				</div>
-
-				<div >
-					<a href="http://sigmaphidelta.org" style="color:white; font-size:16pt;" target="_blank">&Sigma;&Phi;&Delta; National Website <img src="img/link.png" width="14px" height="14px"></a>
-				</div>
-				<div style="font-size:12pt;">
-					Site designed by Steven Gresh
-					<a href="https://www.linkedin.com/in/stevengresh" target="_blank"><img src="img/linkedin.ico" style="width:15px;height:15px;"></a>
-					<a href="mailto:stvngrsh@gmail.com" target="_blank"><img src="img/gmail.ico" style="width:15px;height:15px;"></a>
-				</div>
-			</div> 
-		</div>
-		
-			<!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>-->
-		</div>
-
-	</div>
+    {{ > footer }}
 
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>

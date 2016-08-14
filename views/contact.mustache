@@ -1,0 +1,63 @@
+<html lang="en">
+
+{{ > header }}
+
+<body>
+
+    {{ > nav }}
+	<div class="container" style="text-align:center">
+		<h2 style="margin-top:75px;">Contact Sigma Phi Delta</h2>
+		<h4>For national chapter information please visit the website <a href="#">here</a> </h4>
+		<h4>Click this link to see our exec board members <a href="#">Link</a> </h4>
+		<div class="list-group">
+			<div class="list-group-item">
+				<h3>Chapter President</h3>
+				<h4>Jonathan Kagan | 240-205-1580 | jkagan95@gmail.com</h4>
+			</div>
+			<div class="list-group-item">
+				<h3>Rush Chair</h3>
+				<h4>Justin Layton | 609-929-4274 | jlayton@umd.edu</h4>
+			</div>
+			<div class="list-group-item">
+				<h3>Social Chair</h3>
+				<h4>David Hairumian | dhairumian@gmail.com</h4>
+			</div>
+			<div class="list-group-item">
+				<h3>Fundraising Chair</h3>
+				<h4>Gary McKee | garymckee123@live.com</h4>
+			</div>
+			<div class="list-group-item">
+				<h3>Philantropy Chair</h3>
+				<h4>Steven Davis | garymckee123@live.com</h4>
+			</div>
+			<div class="list-group-item">
+				<h3>Webmaster</h3>
+				<h4>Steven Gresh | stvngrsh@gmail.com</h4>
+			</div>
+		</div>
+	</div>
+		{{ > footer }}
+
+			<!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>-->
+	</div>
+
+
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/slidemenu.js"></script>
+
+
+	<script>
+	$(window).scroll(function() {
+		if ($(document).scrollTop() > 50) {
+			$('nav, .navbar-brand, #nav-container').addClass('shrink');
+		} else {
+			$('nav, .navbar-brand, #nav-container').removeClass('shrink');
+		}
+	});
+
+	</script>
+
+</body>
+</html>

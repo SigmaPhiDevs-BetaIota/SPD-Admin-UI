@@ -1,3 +1,6 @@
+/*
+ *Author: Cole Alban
+ */
 
 /*
  *Load in express module and the path module.
@@ -28,17 +31,24 @@ app.listen(3000, function(){
  *Respond to requests on the root with index.html
  */
 app.get('/',function(req, res){
-    const head = loadFile(path.join(__dirname, "views", "header.mustache"));
-    console.log("Going to root");
-    res.send(loadTemplate("index.mustache",null,{header:head})); 
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("index.mustache",null,partials); 
+    res.send(html);
 });
-
 
 /*
  *Respond to requests to /rush with rush.html
  */
 app.get('/rush',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "rush.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("rush.mustache",null,partials); 
+    res.send(html);
 });
 
 
@@ -47,7 +57,12 @@ app.get('/rush',function(req, res){
  *Respond to requests to /about with rush.html
  */
 app.get('/about',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "about.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("about.mustache",null,partials); 
+    res.send(html);
 });
 
 
@@ -55,21 +70,36 @@ app.get('/about',function(req, res){
  *Respond to requests to /contact with contact.html
  */
 app.get('/contact',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "contact.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("contact.mustache",null,partials); 
+    res.send(html);
 });
 
 /*
  *Respond to requests on /schedule with schedule.html
  */
 app.get('/schedule',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "schedule.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("schedule.mustache",null, partials); 
+    res.send(html);
 });
 
 /*
  *Respond to requests on /philanthropy with philantrhopy.html
  */
 app.get('/philanthropy',function(req, res){
-    res.sendFile(path.join(__dirname, "views", "philanthropy.html"));
+    var partialElements = loadCommonElements();
+    var partials = {header:partialElements["header"],
+                    footer: partialElements["footer"],
+                    nav: partialElements["nav"]}
+    var html = loadTemplate("philanthropy.mustache",null, partials); 
+    res.send(html);
 });
 
 
@@ -101,4 +131,16 @@ function loadTemplate(file, views, mixins){
  */
 function loadFile(file){
     return fs.readFileSync(file, 'utf-8');
+}
+
+/*
+ * This function will load up the header, footer, and navbar.
+ * return: an array containing header at [0] and footer at [1]
+ */
+function loadCommonElements(){
+    var elements = {}; 
+    elements["footer"] = loadFile(path.join(__dirname, "views", "partials", "footer.mustache"));
+    elements["header"] = loadFile(path.join(__dirname, "views", "partials", "header.mustache"));
+    elements["nav"] = loadFile(path.join(__dirname, "views", "partials", "nav.mustache"));
+    return elements;
 }
