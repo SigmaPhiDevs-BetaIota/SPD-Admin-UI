@@ -4,7 +4,7 @@
   "description": "The webpages for the spd website",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
