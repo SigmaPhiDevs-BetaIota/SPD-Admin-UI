@@ -22,8 +22,8 @@
 					<h1>Rush&nbsp;2016</h1>
 				</div>
 			</a>
-			
-			<a href="rush.html#academics" class="accordion-item" id="acc2">
+
+			<a href="/rush#academics" class="accordion-item" id="acc2">
 				<div class="accordion-text unselect">
 					<h1>Academics</h1>
 				</div>
@@ -31,15 +31,15 @@
 				<img class="accordion-img notfocus" src="img/cadbest.jpg">
 			</a>
 
-			<a href="rush.html#career" class="accordion-item" id="acc2">
+			<a href="/rush#career" class="accordion-item" id="acc2">
 				<div class="accordion-text unselect">
 					<h1>Career</h1>
 				</div>
 				<div class="overlay"></div>
 				<img class="accordion-img notfocus" src="img/panel.jpg">
 			</a>
-			
-			<a href="rush.html#social" class="accordion-item right" id="acc3">
+
+			<a href="/rush#social" class="accordion-item right" id="acc3">
 				<div class="accordion-text unselect">
 					<h1>Social</h1>
 				</div>
@@ -58,19 +58,19 @@
 	   				</a>
 					</li>
 					<li class="slider-item" >
-						<a href="rush.html#academics">
+						<a href="/rush#academics">
 							<h1>Academics</h1>
 	   					<div class="slider-img" style="background-image:url('img/cadbest.jpg');"></div>
 	   				</a>
 					</li>
 					<li class="slider-item">
-						<a href="rush.html#career">
+						<a href="/rush#career">
 							<h1>Career</h1>
 	   					<div class="slider-img" style="background-image:url('img/panel.jpg');"></div>
 	   				</a>
 					</li>
 					<li class="slider-item">
-						<a href="rush.html#social">
+						<a href="/rush#social">
 							<h1>Social</h1>
 	   					<div class="slider-img" style="background-image:url('img/group/beach.jpg');"></div>
 	   				</a>
@@ -78,7 +78,7 @@
    			</ul>
 			</div>
 		</div>
-		
+
 		<div class="col-xs-12">
 			<div class="col-lg-6">
 				<h3 align="center">Members in the News</h3>
@@ -119,20 +119,19 @@
 							Brothers Cole Alban, Nick Hays & Alex Kyei
 						</div>
 					</li>
-					
+
 				</ul>
 
 			</div>
 			<div class="col-lg-6">
 				<h3 align="center">Send us a message</h3>
-				<form role="form">
 					<div class="form-group">
 						<label for="name">Name:</label>
 						<input type="name" class="form-control" id="name">
 					</div>
 					<div class="form-group">
 						<label for="email">Email Address:</label>
-						<input type="name" class="form-control" id="name">
+						<input type="name" class="form-control" id="email">
 					</div>
 					<div class="form-group">
 					  <label for="comment">Message:</label>
@@ -143,7 +142,7 @@
 
 			<div class="col-xs-12" style="text-align:center; margin-top:10px;">
 				<h2>Click Below for the full 2016 Rush Schedule</h2>
-				<a id="rush" href="schedule.html" class="btn btn-warning btn-lg">
+				<a id="rush" href="/schedule" class="btn btn-warning btn-lg">
 					<img src="img/calendar179.png">
 					Rush Schedule
 				</a>
@@ -157,43 +156,7 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/slidemenu.js"></script>
 	<script src="js/unslider-min.js"></script>
-
-	<script>
-	var accordionItem = $(".accordion-item");
-	var accordionImg = $(".accordion-img");
-	var accordionBckImg = $(".accordion-bck-img");
-	var overlay = $(".overlay");
-	/*$(window).scroll(function() {
-		if ($(document).scrollTop() > 50) {
-			$('nav').addClass('shrink');
-		} else {
-			$('nav').removeClass('shrink');
-		}
-	});*/
-
-	accordionItem.mouseover(function() {
-		accordionItem.removeClass("active");
-		overlay.removeClass("active");
-		$(this).addClass("active");
-	});
-
-	$(".accordionBckImg, .accordion-item.left").mouseover(function() {
-		accordionItem.removeClass("active");
-		$(".accordion-item.left").addClass("active");
-		$(".overlay.overlay-bck").addClass("active");
-	});
-
-	$('.automatic-slider').unslider({
-		autoplay: true 
-	});
-	$( document ).ready(function(){
-		if (navigator.userAgent.indexOf('Edge') !== -1 || navigator.appVersion.indexOf('Trident/') > 0 || navigator.userAgent.indexOf('MSIE') !== -1) {
-		   alert('Hello, we apologize but some features currently do not display correctly on Microsoft Edge or Internet Explorer. For optimal performance, use another browser such as Firefox or Chrome.');
-		}
-		
-	});
-	
-	</script>
-
+    <script src="js/accordion.js"></script>
+    <script src="js/form_handler.js"></script>
 </body>
 </html>
